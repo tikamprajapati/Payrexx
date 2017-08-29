@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00AFF0"
+    tools:context="com.example.dell.payrexx.SignInActivity">
+
+
+    <ImageView
+        android:id="@+id/first_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/home_logo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"/>
+
+
+    <TextView
+        android:id="@+id/welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome to Payrexx"
+        android:textSize="25dp"
+        android:layout_below="@+id/first_img"
+        android:layout_centerHorizontal="true"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        />
+    <TextView
+        android:id="@+id/add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/wel"
+        android:textSize="18dp"
+        android:gravity="center"
+        android:layout_marginLeft="11dp"
+        android:layout_marginRight= "10dp"
+        android:layout_below="@+id/welcome"
+        android:layout_centerHorizontal="true"
+        android:textColor="#b2e6f2"
+        android:layout_marginTop="25dp"
+        />
+<android.support.v7.widget.CardView
+    android:id="@+id/ll_rr"
+    android:layout_width="match_parent"
+    android:layout_height="170dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginLeft="10dp"
+    android:background="#fff"
+    android:layout_above="@+id/ll"
+    android:layout_marginBottom="50dp">
+<LinearLayout
+
+    android:layout_width="match_parent"
+    android:layout_height="170dp"
+    android:orientation="vertical"
+   >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:padding="10dp"
+        >
+
+        <EditText
+            android:inputType="text"
+            android:id="@+id/your_name_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:hint="yourname"
+            android:textSize="18dp"
+            android:textCursorDrawable="@drawable/curser_bakt"
+            android:singleLine="true"
+            android:layout_toLeftOf="@+id/txt1"
+            android:gravity="right"
+            android:background="@android:color/transparent"
+            android:layout_marginRight="12dp"
+            />
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="1dp"
+           android:layout_marginRight="12dp"
+           android:layout_marginLeft="10dp"
+           android:layout_toLeftOf="@+id/txt1"
+           android:gravity="right"
+           android:background="#7FBA00"
+           android:layout_below="@+id/your_name_edit"/>
+
+        <TextView
+            android:id="@+id/txt1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text=".payrexx.com"
+            android:layout_marginRight="20dp"
+            android:textColor="#9e9c9c"
+            android:textSize="17dp"
+            android:textStyle="bold"
+            android:layout_centerVertical="true"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="10dp"
+
+        >
+
+       <TextView
+           android:id="@+id/need_support"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Need support? Click here"
+           android:textSize="18dp"
+           android:textStyle="bold"
+           android:textColor="#9e9c9c"
+           android:layout_centerVertical="true"/>
+
+        <TextView
+            android:id="@+id/save_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="#7FBA00"
+            android:text="SAVE"
+            android:layout_marginRight="10dp"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:paddingBottom="12dp"
+            android:paddingTop="12dp"
+            android:textStyle="bold"
+            android:textColor="#fff"/>
+
+    </RelativeLayout>
+
+</LinearLayout>
+</android.support.v7.widget.CardView>
+
+
+
+
+    <LinearLayout
+        android:id="@+id/ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:weightSum="2"
+        android:padding="22dp"
+        android:background="#333333">
+
+        <TextView
+            android:id="@+id/no_pyrexx_accont_txt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="No Payrexx account?"
+            android:textColor="#c9c7c7"
+            android:layout_gravity="center"
+            android:gravity="left"
+            android:layout_weight="0.9"
+            android:textSize="16dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/register_now_for_free_txt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="REGISTER NOW FOR FREE"
+            android:layout_weight="1.07"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:textColor="#7ab104"
+            android:layout_gravity="left"
+            android:gravity="right"
+            />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".03"
+            />
+    </LinearLayout>
+</RelativeLayout>

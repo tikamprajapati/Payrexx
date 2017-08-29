@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:background="#fff">
+
+        <TextView
+            android:id="@+id/logoutTitleId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:layout_marginLeft="10dp"
+            android:padding="12dp"
+            android:text="Logout"
+            android:textColor="#000"
+            android:textSize="21dp" />
+
+
+        <TextView
+            android:id="@+id/logoutHeadingId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/logoutTitleId"
+            android:gravity="center"
+            android:padding="12dp"
+            android:text="Do you want to logout?"
+            android:textColor="#000"
+            android:textSize="18dp" />
+
+        <LinearLayout
+            android:id="@+id/ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/logoutHeadingId"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:padding="15dp"
+                android:text=""
+                android:textColor="#000000" />
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.6"
+                android:gravity="right">
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <TextView
+                        android:id="@+id/txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        />
+
+                    <TextView
+                        android:id="@+id/logoutNoId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Yes"
+                        android:paddingLeft="22dp"
+                        android:paddingRight="22dp"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_toLeftOf="@+id/txt"
+                        android:background="#7FBA00"
+                        android:textColor="#fff" />
+
+                    <TextView
+                        android:id="@+id/logoutYesId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/txt"
+                        android:paddingLeft="22dp"
+                        android:paddingRight="22dp"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp"
+                        android:layout_marginLeft="15dp"
+                        android:text="No"
+                        android:textColor="#fff"
+                        android:background="#7FBA00"
+                        />
+
+                </RelativeLayout>
+            </RelativeLayout>
+
+
+        </LinearLayout>
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="5dp"
+    android:layout_below="@+id/ll"/>
+
+    </RelativeLayout>
+
+
+</android.support.v7.widget.CardView>

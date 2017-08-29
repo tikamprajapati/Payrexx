@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:enabled="true"
+        android:visible="true"
+        >
+        <item
+            android:id="@+id/log_out"
+            android:title="Logout"/>
+
+    </group>
+
+    <!--<group
+        android:enabled="true"
+        android:visible="true"
+        >
+        <item
+            android:id="@+id/scan_btn"
+            android:title="CardScane"/>
+
+    </group>-->
+
+
+</menu>
