@@ -1,20 +1,15 @@
 package com.example.dell.payrexx;
 
-import android.app.Activity;
+
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.ActivityNotFoundException;
-import android.content.Context;
+
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.net.Uri;
+
 import android.nfc.NfcAdapter;
 import android.os.Bundle;
 import android.os.Handler;
-import android.provider.Settings;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -29,23 +24,18 @@ import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
+
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.dell.payrexx.LocalStorage.Utility;
-import com.example.dell.payrexx.common.logger.Log;
 import com.pro100svitlo.creditCardNfcReader.CardNfcAsyncTask;
-//import com.pro100svitlo.creditCardNfcReader.CardNfcAsyncTask.CardNfcInterface;
 import com.pro100svitlo.creditCardNfcReader.utils.CardNfcUtils;
 
 public class LoginWebview extends AppCompatActivity implements CardNfcAsyncTask.CardNfcInterface, OnTouchListener {
-    String aco_no;
     String month, year,card;
-    String title, mess;
     private WebView webView;
     private ProgressBar progressBar;
     private String url = "https://{input}.payrexx.com/vpos";
@@ -83,11 +73,9 @@ public class LoginWebview extends AppCompatActivity implements CardNfcAsyncTask.
         mNfcAdapter = NfcAdapter.getDefaultAdapter(LoginWebview.this);
         if (mNfcAdapter == null) {
             TextView noNfc = (TextView) findViewById(android.R.id.candidatesArea);
-            //   Toast.makeText(LoginWebview.this, "1111111", Toast.LENGTH_LONG).show();
             noNfc.setVisibility(View.VISIBLE);
         } else {
             mCardNfcUtils = new CardNfcUtils(LoginWebview.this);
-            //  Toast.makeText(LoginWebview.this, "CardNfcUtils", Toast.LENGTH_SHORT).show();
             createProgressDialog();
             initNfcMessages();
             mIntentFromCreate = true;
@@ -99,8 +87,9 @@ public class LoginWebview extends AppCompatActivity implements CardNfcAsyncTask.
 
         String your_name = Utility.getStringPreferences(LoginWebview.this, "user_name");
 
-        // url ="https://"+your_name+".payrexx.com/vpos";
-        url = "https://demo.payrexx.com/en/vpos?section=checkout";
+        url ="https://"+your_name+".payrexx.com/vpos";
+       // url = "https://payrexx.com/en/vpos?section=checkout";
+       // url = "https://demo.payrexx.com/en/vpos?section=checkout";
 
 
         webView.setWebChromeClient(new WebChromeClient() {
@@ -118,7 +107,6 @@ public class LoginWebview extends AppCompatActivity implements CardNfcAsyncTask.
 
         webView.setWebViewClient(new MyBrowser());
         webView.getSettings().setLoadsImagesAutomatically(true);
-//        webView.getSettings().setJavaScriptEnabled(true);
         webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         webView.loadUrl(url);
 
@@ -136,7 +124,6 @@ public class LoginWebview extends AppCompatActivity implements CardNfcAsyncTask.
 
         } else if (mNfcAdapter != null) {
             if (!mIsScanNow) {
-              //  Toast.makeText(this, "Please put your card to back panel of the phone", Toast.LENGTH_LONG).show();
             }
             mCardNfcUtils.enableDispatch();
         }
@@ -157,19 +144,10 @@ public class LoginWebview extends AppCompatActivity implements CardNfcAsyncTask.
         String[] separated = expiredDate.split("/");
         month = separated[0];
         year = separated[1];
-     //   Toast.makeText(LoginWebview.this, "year" + year, Toast.LENGTH_SHORT).show();
+        MyBrowser mb = new MyBrowser();
 
-        //String card_pretty = getPrettyCardNumber(card);
-       /* if (card == null) {
-            card = "";
-        } else {
-            Utility.setStringPreferences(LoginWebview.this, "card_preetty_", card);
-            Utility.setStringPreferences(LoginWebview.this, "expired_month", month);
-            Utility.setStringPreferences(LoginWebview.this, "expired_year", year);
+        mb.checkJS(card, month, year);
 
-
-        }
-*/
 
     }
 
@@ -184,17 +162,18 @@ public class LoginWebview extends AppCompatActivity implements CardNfcAsyncTask.
 
     @Override
     public void doNotMoveCardSoFast() {
+        Toast.makeText(LoginWebview.this, "Dont't move casd so fast", Toast.LENGTH_SHORT).show();
 
     }
 
     @Override
     public void unknownEmvCard() {
-
+        Toast.makeText(LoginWebview.this, "Unknown EVM Card", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void cardWithLockedNfc() {
-
+        Toast.makeText(LoginWebview.this, "Card With Locked NFC", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -205,7 +184,6 @@ public class LoginWebview extends AppCompatActivity implements CardNfcAsyncTask.
     }
 
     private void createProgressDialog() {
-     //   Toast.makeText(this, "createProgressDialog", Toast.LENGTH_LONG).show();
         String title = getString(R.string.ad_progressBar_title);
         String mess = getString(R.string.ad_progressBar_mess);
         mProgressDialog = new ProgressDialog(this);
@@ -263,7 +241,7 @@ public class LoginWebview extends AppCompatActivity implements CardNfcAsyncTask.
     }
 
     private void initNfcMessages() {
-        //  Toast.makeText(LoginWebview.this, "111111111666666666", Toast.LENGTH_LONG).show();
+
         mDoNotMoveCardMessage = getString(R.string.snack_doNotMoveCard);
         mCardWithLockedNfcMessage = getString(R.string.snack_lockedNfcCard);
         mUnknownEmvCardMessage = getString(R.string.snack_unknownEmv);
@@ -336,49 +314,21 @@ public class LoginWebview extends AppCompatActivity implements CardNfcAsyncTask.
             view.loadUrl(url);
             return true;
         }
+        int toastCount = 0;
+
 
         @JavascriptInterface
         public String checkCall()
         {
-
-           /* String cardnumber = Utility.getStringPreferences(LoginWebview.this, "card_preetty_");
-            String exp_month = Utility.getStringPreferences(LoginWebview.this, "expired_month");
-            String exp_year = Utility.getStringPreferences(LoginWebview.this, "expired_year");*/
-
              cardnumber = card;
              exp_month = month;
              exp_year = year;
 
-
-
-           // Utility.removeStringPreferences(LoginWebview.this,cardnumber);
-
-           /* private void gotoCompletedProspect() {
-
-                handler.postDelayed(new Runnable() {
-                    public void run() {
-                        // TODO: Your application init goes here.
-                    Utility.clearAllSharedPreferences(LoginWebview.this);
-                    }
-                }, 10000);
-            }*/
-
+            if(toastCount==0) {
+                Toast.makeText(LoginWebview.this, "Please keep your card to back panel of the phone", Toast.LENGTH_SHORT).show();
+                toastCount=1;
+            }
             return checkNull(cardnumber) + "-" + checkNull(exp_month) + "-" + checkNull(exp_year);
-
-
-        }
-
-        private void gotoCompletedProspect() {
-            handler.postDelayed(new Runnable() {
-                public void run() {
-                    Toast.makeText(LoginWebview.this, "5 second", Toast.LENGTH_SHORT).show();
-                    // TODO: Your application init goes here.
-                    cardnumber ="";
-                    exp_month ="";
-                    exp_year ="";
-
-                }
-            }, 1000);
         }
 
 
@@ -389,9 +339,27 @@ public class LoginWebview extends AppCompatActivity implements CardNfcAsyncTask.
             return value;
         }
 
+        public String generateToast(){
+            Toast.makeText(LoginWebview.this, "Please keep your card to back panel of the phone", Toast.LENGTH_SHORT).show();
+            return "yes";
+        }
+
 
         @Override
         public void onPageFinished(WebView view, String url) {
+            webView.loadUrl("javascript:" +
+                    "function hasClass1(element, cls) {\n" +
+                    "    return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;\n" +
+                    "}" +
+                    "var myVar1 = setInterval(function(){"
+                    + "var el1 = document.getElementById('payment-details');"
+                    + "if(hasClass1(el1, 'active')){  "
+                    +"var itemnew = app.checkCall(); clearInterval(myVar1);"
+                    + "}},1000);");
+        }
+
+        public void checkJS(String card, String month, String year){
+
             webView.loadUrl("javascript:" +
                     "function hasClass(element, cls) {\n" +
                     "    return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;\n" +
@@ -403,20 +371,11 @@ public class LoginWebview extends AppCompatActivity implements CardNfcAsyncTask.
                     + "var temp = item.split(\"-\");"
                     + "document.getElementById('card-number-PPS').value = temp[0];"
                     + "document.getElementsByClassName('card-expiry-month')[0].value = temp[1];"
-                    + "document.getElementsByClassName('card-expiry-year')[0].value = '20'+temp[2];"
+                    + "document.getElementsByClassName('card-expiry-year')[0].value = '20'+temp[2];if(temp[0]!=''){clearInterval(myVar);}"
                     + "}},1000);");
-
-
-                  /*  int reset = 1000;
-                    reset=reset+1000;
-                    if(reset==9000){
-                        gotoCompletedProspect();
-                      //  System.exit(0);
-
-                    }*/
-
-
         }
+
+
 
     }
 

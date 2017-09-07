@@ -33,10 +33,14 @@
                 android:name="android.nfc.action.TECH_DISCOVERED"
                 android:resource="@xml/nfc_tech_filter" />
         </activity>
-        <activity android:name=".SupportWebview" />
-        <activity android:name=".LoginWebview" />
-        <activity android:name=".RegisterWebview" />
-        <activity android:name=".NfcCarderReader"></activity>
+        <activity android:name=".SupportWebview"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".LoginWebview"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".RegisterWebview"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".NfcCarderReader"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
